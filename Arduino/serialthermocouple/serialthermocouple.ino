@@ -47,20 +47,39 @@ void setup() {
 }
 
 void loop() {
-  // basic readout test, just print the current temp
-   Serial.print("Internal Temp = ");
-   Serial.println(thermocouple.readInternal());
-   time = millis(); //Change code to CSV format
+  // basic readout test, just print the current temp.  
+  //This gives an offset based on internal temp.
+   static int i = 0;
+   
+   if (i = 0)
+   { 
+    Serial.print("Internal Temp = ");
+    Serial.println(thermocouple.readInternal());
+   }
    
    double c = thermocouple.readCelsius();
    if (isnan(c)) {
      Serial.println("Something wrong with thermocouple!");
    } else {
-     Serial.print("C = "); 
+     Serial.print(millis());
+     Serial.print("\t");
+     Serial.print(millis()/1000.00); 
+     Serial.print("\t");
      Serial.println(c);
+     
    }
    //Serial.print("F = ");
    //Serial.println(thermocouple.readFarenheit());
  
    delay(1000);
+   i++;
 }
+
+/*
+unsigned long SecTime (unsigned long x)
+{
+  //Gives time in seconds  
+  SecTime = millis()/1000;
+}
+*/
+

@@ -15,6 +15,11 @@ import matplotlib.pyplot as plt #import matplotlib library
 #from drawnow import *
 #import random
 
+"""
+NOTES:
+Put list port section in new script, add baud rate
+"""
+
 thermo= []
 
 arduino_conn = [
@@ -27,10 +32,14 @@ if not arduino_conn:
 if len(arduino_conn) > 1:
     warnings.warn('Multiple Arduinos found - using the first')
 
-arduinoData = serial.Serial(arduino_conn, 9600) #Creating our serial object named arduinoData
+try:
+    arduinoData = serial.Serial(arduino_conn, 9600) #Creating our serial object named arduinoData
+except:
+    print("COM issue!")
+    quit()
 
 while True:
-    arduinoData.portstr
+    arduinoData.name
 
 
 """
